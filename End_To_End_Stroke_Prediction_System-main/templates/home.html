@@ -1,0 +1,95 @@
+<html>
+<head>
+    <title>Health Risk Prediction</title>
+</head>
+<body>
+    <div class="form-container">
+    <h1>Health Risk Prediction</h1>
+    
+    <form action="/predictdata" method="post"> 
+
+        <h2>
+            <legend>Enter Patient Details</legend>
+        </h2>
+
+        <!-- 🔹 Numeric Features -->
+        <div class="mb-3">
+            <label class="form-label">Age</label>
+            <input class="form-control" type="number" name="age" placeholder="Enter age" min="0" step="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">BMI</label>
+            <input class="form-control" type="number" name="bmi" placeholder="Enter BMI" step="0.1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Average Glucose Level</label>
+            <input class="form-control" type="number" name="avg_glucose_level" placeholder="Enter average glucose level" step="0.1" required>
+        </div>
+
+        <!-- 🔹 Categorical Features -->
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-control" name="gender" required>
+                <option disabled selected value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Ever Married</label>
+            <select class="form-control" name="ever_married" required>
+                <option disabled selected value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Residence Type</label>
+            <select class="form-control" name="Residence_type" required>
+                <option disabled selected value="">Select</option>
+                <option value="Urban">Urban</option>
+                <option value="Rural">Rural</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Work Type</label>
+            <select class="form-control" name="work_type" required>
+                <option disabled selected value="">Select work type</option>
+                <option value="Private">Private</option>
+                <option value="Self-employed">Self-employed</option>
+                <option value="Govt_job">Govt job</option>
+                <option value="Children">Children</option>
+                <option value="Never_worked">Never worked</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Smoking Status</label>
+            <select class="form-control" name="smoking_status" required>
+                <option disabled selected value="">Select smoking status</option>
+                <option value="never smoked">Never smoked</option>
+                <option value="formerly smoked">Formerly smoked</option>
+                <option value="smokes">Smokes</option>
+                <option value="Unknown">Unknown</option>
+            </select>
+        </div>
+
+        <!-- 🔹 Submit -->
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict Health Risk">
+        </div>
+    </form>
+
+    <h2>
+    The predicted result is {{ results }}
+    </h2>
+
+</div>
+</body>
+</html>

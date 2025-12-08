@@ -1,0 +1,177 @@
+<html>
+<head>
+    <title>Airbnb Price Prediction</title>
+</head>
+<body>
+    <div class="form-container">
+    <h1>Airbnb Price Prediction</h1>
+    
+    <form action="/predictdata" method="post"> 
+    {# <form action="{{ url_for('predict_datapoint')}}" method="post"> #}
+        <h2>
+            <legend>Enter Listing Details</legend>
+        </h2>
+
+        <!-- 🔹 Numeric Features -->
+        <div class="mb-3">
+            <label class="form-label">Bathrooms</label>
+            <input class="form-control" type="number" name="bathrooms" placeholder="Enter number of bathrooms" min="0" step="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Bedrooms</label>
+            <input class="form-control" type="number" name="bedrooms" placeholder="Enter number of bedrooms" min="0" step="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Beds</label>
+            <input class="form-control" type="number" name="beds" placeholder="Enter number of beds" min="0" step="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Accommodates</label>
+            <input class="form-control" type="number" name="accommodates" placeholder="Guests accommodated" min="1" step="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Guests Included</label>
+            <input class="form-control" type="number" name="guests_included" placeholder="Guests included in price" min="1" step="1" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Minimum Nights (avg)</label>
+            <input class="form-control" type="number" name="minimum_nights_avg_ntm" placeholder="Enter minimum nights" min="0" step="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Maximum Nights (avg)</label>
+            <input class="form-control" type="number" name="maximum_nights_avg_ntm" placeholder="Enter maximum nights" min="0" step="1" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Cleaning Fee</label>
+            <input class="form-control" type="text" name="cleaning_fee" placeholder="e.g. 40.00" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Extra People Fee</label>
+            <input class="form-control" type="text" name="extra_people" placeholder="e.g. 10.00" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Security Deposit</label>
+            <input class="form-control" type="text" name="security_deposit" placeholder="e.g. 200.00" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Host Response Rate (%)</label>
+            <input class="form-control" type="text" name="host_response_rate" placeholder="e.g. 67" required>
+        </div>
+        
+        <div class="mb-3">
+            <label class="form-label">Room Type</label>
+            <select class="form-control" name="room_type" required>
+                <option disabled selected value="">Select room type</option>
+                <option value="Entire home/apt">Entire home/apt</option>
+                <option value="Private room">Private room</option>
+                <option value="Shared room">Shared room</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Property Type</label>
+            <select class="form-control" name="property_type" required>
+                <option disabled selected value="">Select property type</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Loft">Loft</option>
+                <option value="Condominium">Condominium</option>
+                <option value="Boat">Boat</option>
+                <option value="House">House</option>
+                <option value="Bed and breakfast">Bed and breakfast</option>
+                <option value="Townhouse">Townhouse</option>
+                <option value="Villa">Villa</option>
+                <option value="Guest suite">Guest suite</option>
+                <option value="Serviced apartment">Serviced apartment</option>
+                <option value="Bungalow">Bungalow</option>
+                <option value="Hotel">Hotel</option>
+                <option value="Cottage">Cottage</option>
+                <option value="Other">Other</option>
+                <option value="Guesthouse">Guesthouse</option>
+                <option value="Boutique hotel">Boutique hotel</option>
+                <option value="Hostel">Hostel</option>
+                <option value="Camper/RV">Camper/RV</option>
+                <option value="Campsite">Campsite</option>
+                <option value="Tent">Tent</option>
+                <option value="Aparthotel">Aparthotel</option>
+                <option value="Hut">Hut</option>
+                <option value="Barn">Barn</option>
+                <option value="Chalet">Chalet</option>
+                <option value="Farm stay">Farm stay</option>
+                <option value="Cabin">Cabin</option>
+                <option value="Tiny house">Tiny house</option>
+                <option value="Casa particular (Cuba)">Casa particular (Cuba)</option>
+            </select>
+        </div>
+
+        {# <div class="mb-3">
+            <label class="form-label">Neighbourhood</label>
+            <input class="form-control" type="text" name="neighbourhood_cleansed" placeholder="Enter neighbourhood" required>
+        </div> #}
+        <div class="mb-3">
+            <label class="form-label">Neighbourhood</label>
+            <select class="form-control" name="neighbourhood_cleansed" required>
+                <option disabled selected value="">Select neighbourhood</option>
+                {% for n in neighbourhoods %}
+                    <option value="{{ n }}">{{ n }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label">Host is Superhost</label>
+            <select class="form-control" name="host_is_superhost" required>
+                <option disabled selected value="">Select</option>
+                <option value="t">Yes</option>
+                <option value="f">No</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Bed Type</label>
+            <select class="form-control" name="bed_type" required>
+                <option disabled selected value="">Select bed type</option>
+                <option value="Real Bed">Real Bed</option>
+                <option value="Futon">Futon</option>
+                <option value="Pull-out Sofa">Pull-out Sofa</option>
+                <option value="Couch">Couch</option>
+                <option value="Airbed">Airbed</option>
+            </select>
+        </div>
+
+        
+
+        <div class="mb-3">
+            <label class="form-label">Cancellation Policy</label>
+            <select class="form-control" name="cancellation_policy" required>
+                <option disabled selected value="">Select policy</option>
+                <option value="flexible">Flexible</option>
+                <option value="moderate">Moderate</option>
+                <option value="strict">Strict</option>
+            </select>
+        </div>
+
+        <!-- 🔹 Submit -->
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict Price">
+        </div>
+    </form>
+
+    <h2>
+    The predicted price is {{ results }}
+    </h2>
+
+</div>
+</body>
+</html>
