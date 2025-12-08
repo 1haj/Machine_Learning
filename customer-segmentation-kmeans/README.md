@@ -85,17 +85,6 @@ KMeans(n_clusters=5, init="k-means++", random_state=42)
 All steps (EDA → Model → Insights) are implemented in:  
 `notebooks/customer_segmentation_kmeans.ipynb`
 
----
-
-## 📸 Visuals (example)  
-Add your saved images here:
-
-```
-images/elbow_method.png  
-images/clusters.png  
-```
-
----
 
 
 
